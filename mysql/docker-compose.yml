@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql:5.7.26
+    container_name: mysql
+    restart: unless-stopped
+    # 容器最大内存
+    mem_limit: 512m
+    # 关闭swap
+    memswap_limit: 512m
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      # 映射到当前目录下的 data 文件夹
+      - ./data:/var/lib/mysql
+      # 如果你想自定义配置，也可以映射配置文件
+      - ./conf/my_custom.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
