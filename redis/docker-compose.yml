@@ -1,0 +1,22 @@
+services:
+  db:
+    image: redis:7.0.8
+    container_name: redis
+    restart: unless-stopped
+    # 容器最大内存
+    mem_limit: 128m
+    # 关闭swap
+    memswap_limit: 128m
+    ports:
+      - "6379:6379"
+    volumes:
+      # 挂载配置文件
+      - ./conf/redis.conf:/etc/redis/redis.conf
+      # 挂载持久化数据目录（核心：RDB/AOF文件存在这里）
+      - ./data:/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
