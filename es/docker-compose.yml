@@ -1,0 +1,25 @@
+services:
+  elasticsearch:
+    image: elasticsearch:7.8.0
+    container_name: elasticsearch
+    mem_limit: 1g
+    environment:
+      - discovery.type=single-node
+      # ES 进程 JVM 堆内存（必须 ≤ 容器内存的 1/2）
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./config:/usr/share/elasticsearch/config
+      - ./data:/usr/share/elasticsearch/data
+    networks:
+      - app-network
+    restart: unless-stopped
+    user: root
+
+# 外部网络不变
+networks:
+  app-network:
+    external: true
