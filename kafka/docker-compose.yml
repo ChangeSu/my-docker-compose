@@ -1,0 +1,46 @@
+services:
+  kafka:
+    # Apache 官方原生镜像，3.0+ 稳定支持 KRaft
+    image: apache/kafka:4.2.0
+    container_name: kafka
+    # 单机生效容器内存限制
+    mem_limit: 1g
+    ports:
+      - "19092:19092"  # 宿主机通过 localhost:19092 访问
+      - "9092:9092"    # 容器间通过 kafka:9092 访问
+    environment:
+      # ========== KRaft 核心配置（无ZK核心） ==========
+      KAFKA_NODE_ID: 1
+      # 启用 KRaft 模式，同时作为控制器+代理节点（单机专用）
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      # 集群节点声明（单机单节点）
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      # 1. 定义监听器名称
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19092,CONTROLLER://0.0.0.0:9093
+      # 2. 核心修改：对外暴露 localhost，对内暴露容器名
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:19092
+      # 3. 映射安全协议
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      # 4. 指定内部通信使用的监听器
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      # 本地开发单节点配置
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      # 自动生成集群ID（无需手动初始化）
+      CLUSTER_ID: 4L6g3nShT-eMCtK--X86sw
+    # 数据持久化挂载（宿主机 ↔ 容器）
+    volumes:
+      - ./data:/var/lib/kafka/data
+      - ./config/server.properties:/opt/kafka/config/server.properties
+    # 关联外部网络
+    networks:
+      - app-network
+    restart: unless-stopped
+    user: root  # 解决挂载权限问题
+
+# 外部已存在的网络
+networks:
+  app-network:
+    external: true
