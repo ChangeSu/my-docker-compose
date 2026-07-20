@@ -1,0 +1,19 @@
+services:
+  cli-proxy-api:
+    image: eceasy/cli-proxy-api:latest
+    container_name: cli-proxy-api
+    restart: unless-stopped
+    ports:
+      - "8317:8317"
+    volumes:
+      - ./data/config.yaml:/CLIProxyAPI/config.yaml
+      - ./data/auths:/root/.cli-proxy-api
+      - ./data/logs:/CLIProxyAPI/logs
+      - ./data/static:/CLIProxyAPI/static
+      - ./data/plugins:/CLIProxyAPI/plugins
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
