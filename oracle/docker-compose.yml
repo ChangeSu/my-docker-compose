@@ -1,0 +1,25 @@
+services:
+  db:
+    image: registry.cn-hangzhou.aliyuncs.com/zhuyijun/oracle:19c
+    container_name: oracle
+    restart: unless-stopped
+    # 容器最大内存（Oracle 19c 建议至少 2G）
+    mem_limit: 2g
+    # 关闭swap
+    memswap_limit: 2g
+    environment:
+      ORACLE_SID: ORCLCDB
+      ORACLE_PDB: ORCLPDB
+      ORACLE_PWD: Oracle123
+      ORACLE_CHARACTERSET: AL32UTF8
+    ports:
+      - "1521:1521"
+    volumes:
+      # 映射到当前目录下的 data 文件夹
+      - ./data:/opt/oracle/oradata
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
