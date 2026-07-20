@@ -1,4 +1,6 @@
 # local volumes data
 */data/*
+es/plugins/
+jenkins/jenkins-data/
 
 
