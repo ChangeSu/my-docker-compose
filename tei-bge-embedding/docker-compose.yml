@@ -1,0 +1,14 @@
+services:
+  tei-bge-embedding:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest
+    container_name: tei-bge-embedding
+    ports:
+      - "18000:80"
+    volumes:
+      - ./data:/data
+    environment:
+      - HF_HUB_OFFLINE=1
+    command: >
+      --model-id /data/BAAI/bge-large-zh-v1.5
+      --port 80
+    restart: unless-stopped
