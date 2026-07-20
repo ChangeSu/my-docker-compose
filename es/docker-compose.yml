@@ -1,6 +1,6 @@
 services:
   elasticsearch:
-    image: elasticsearch:7.8.0
+    image: elasticsearch:7.8.1
     container_name: elasticsearch
     mem_limit: 1g
     environment:
@@ -14,6 +14,7 @@ services:
     volumes:
       - ./config:/usr/share/elasticsearch/config
       - ./data:/usr/share/elasticsearch/data
+      - ./plugins:/usr/share/elasticsearch/plugins
     networks:
       - app-network
     restart: unless-stopped
