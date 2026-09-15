@@ -1,0 +1,13 @@
+# 启动容器（映射端口+设置管理密码+开机自启）
+docker run -d `
+  --name emqx-test `
+  --restart unless-stopped `
+  -p 1883:1883 `       # MQTT TCP端口（SpringBoot/设备连接）
+  -p 8083:8083 `       # MQTT WebSocket端口（前端测试）
+  -p 18083:18083 `     # Web管理界面端口
+  -e EMQX_ADMIN_USERNAME=admin `  # 管理界面用户名
+  -e EMQX_ADMIN_PASSWORD=123456 ` # 管理界面密码（测试用，简单好记）
+  emqx/emqx:5.7.0
+
+# 启动容器（映射端口+设置管理密码+开机自启）
+docker run -d --name emqx --restart unless-stopped -p 1883:1883 -p 8083:8083 -p 18083:18083 -e EMQX_ADMIN_USERNAME=admin -e EMQX_ADMIN_PASSWORD=123456abc emqx/emqx:5.7.0

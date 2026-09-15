@@ -1,0 +1,17 @@
+services:
+  emqx:
+    image: emqx/emqx:5.7.0
+    container_name: emqx
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "18083:18083"
+    environment:
+      - EMQX_ADMIN_USERNAME=admin
+      - EMQX_ADMIN_PASSWORD=123456abc
+      # 建议设置节点名称，避免重启后IP变化导致数据读取问题
+      - EMQX_NODE__NAME=emqx@node1.emqx.com
+    volumes:
+      - ./data:/opt/emqx/data
+      - ./logs:/opt/emqx/log
