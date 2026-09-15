@@ -4,5 +4,7 @@ es/plugins/
 jenkins/jenkins-data/
 hermes_data
 hermes_workspace
+.env
+logs
 
 
