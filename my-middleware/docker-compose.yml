@@ -1,0 +1,100 @@
+services:
+  mysql:
+    image: mysql:5.7.26
+    container_name: mysql
+    restart: unless-stopped
+    mem_limit: 512m
+    memswap_limit: 512m
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../mysql/data:/var/lib/mysql
+      - ../mysql/conf/my_custom.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - app-network
+
+  elasticsearch:
+    image: elasticsearch:7.8.1
+    container_name: elasticsearch
+    mem_limit: 1g
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ../es/config:/usr/share/elasticsearch/config
+      - ../es/data:/usr/share/elasticsearch/data
+      - ../es/plugins:/usr/share/elasticsearch/plugins
+    networks:
+      - app-network
+    restart: unless-stopped
+    user: root
+
+  kafka:
+    image: apache/kafka:4.2.0
+    container_name: kafka
+    mem_limit: 1g
+    ports:
+      - "9092:9092"
+      - "19092:19092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:19092,EXTERNAL://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:19092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      CLUSTER_ID: 4L6g3nShT-eMCtK--X86sw
+    volumes:
+      - ../kafka/data:/var/lib/kafka/data
+      - ../kafka/config/server.properties:/opt/kafka/config/server.properties
+    networks:
+      - app-network
+    restart: unless-stopped
+    user: root
+
+  redis:
+    image: redis:7.0.8
+    container_name: redis
+    restart: unless-stopped
+    mem_limit: 128m
+    memswap_limit: 128m
+    ports:
+      - "6379:6379"
+    volumes:
+      - ../redis/conf/redis.conf:/etc/redis/redis.conf
+      - ../redis/data:/data
+    networks:
+      - app-network
+
+  # oracle:
+  #   image: registry.cn-hangzhou.aliyuncs.com/zhuyijun/oracle:19c
+  #   container_name: oracle
+  #   restart: unless-stopped
+  #   mem_limit: 2g
+  #   memswap_limit: 2g
+  #   environment:
+  #     ORACLE_SID: ORCLCDB
+  #     ORACLE_PDB: ORCLPDB
+  #     ORACLE_PWD: Oracle123
+  #     ORACLE_CHARACTERSET: AL32UTF8
+  #   ports:
+  #     - "1521:1521"
+  #   volumes:
+  #     - ../oracle/data:/opt/oracle/oradata
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    external: true
