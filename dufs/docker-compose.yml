@@ -1,0 +1,26 @@
+services:
+  dufs:
+    image: sigoden/dufs:v0.46.0
+    container_name: dufs
+    restart: unless-stopped
+    ports:
+      - "15000:5000"
+    volumes:
+      - ./data:/data/video
+      - F:/.m2_old/repository:/data/repository
+    # 只读
+    # command: /data
+    # 允许下载文件夹, 只打包, 不压缩
+    command: /data --allow-archive --compress none
+    # -A 等价于 --allow-all                      
+    #command: /data -A
+    #environment:
+    # 管理员，读写全部权限
+    #  - DUFS_AUTH=admin:你的密码@/:rw
+    # 可选：只读访客账号
+    #  - DUFS_AUTH=guest:guest@/:ro
+
+# 外部网络不变
+networks:
+  app-network:
+    external: true
