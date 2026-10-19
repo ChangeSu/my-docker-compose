@@ -1,0 +1,114 @@
+03:02:47  GBase Database Server Started.
+03:02:47  Requested shared memory segment size rounded from 13476KB to 14064KB
+
+Sun Sep 20 03:02:48 2026
+
+03:02:48  Requested shared memory segment size rounded from 221001KB to 221004KB
+03:02:49  Successfully added a bufferpool of page size 2K.
+
+03:02:49  Requested shared memory segment size rounded from 324661KB to 324664KB
+03:02:49  Successfully added a bufferpool of page size 16K.
+
+03:02:49  Event alarms enabled.  ALARMPROG = '/opt/gbase/etc/alarmprogram.sh'
+03:02:49  Booting Language <c> from module <>
+03:02:49  Loading Module <CNULL>
+03:02:49  Booting Language <builtin> from module <>
+03:02:49  Loading Module <BUILTINNULL>
+03:02:54  libaio.so.1: cannot open shared object file: No such file or directory
+03:02:54  Please install libaio package. See machine notes.
+03:02:54  Warning: Kernel Asynchronous I/O is disabled.
+03:02:54  DR: DRAUTO is 0 (Off)
+03:02:54  DR: ENCRYPT_HDR is 0 (HDR encryption Disabled)
+03:02:54  Event notification facility epoll enabled.
+03:02:54  Warning: The surrogates file /etc/gbasedbt/allowed.surrogates is either inaccessible or does not exist (errno=
+2).  Mapping users to properties requires the file.
+03:02:54  Warning: Loading entries from the surrogates file /etc/gbasedbt/allowed.surrogates into surrogate cache
+ failed. Surrogate cache does not exist.
+03:02:54  CCFLAGS2 value set to 0x200
+03:02:54  SQL_FEAT_CTRL value set to 0x8008
+03:02:54  SQL_DEF_CTRL value set to 0x4b0
+03:02:54  GBase Database Server Version 12.10.FC4G1AEE Software Serial Number AAA#B000000
+03:02:55  GBase Database Server Initialized -- Shared Memory Initialized.
+
+03:02:55  Started 1 B-tree scanners.
+03:02:55  B-tree scanner threshold set at 5000.
+03:02:55  B-tree scanner range scan size set to -1.
+03:02:55  B-tree scanner ALICE mode set to 6.
+03:02:55  B-tree scanner index compression level set to med.
+03:02:55  Physical Recovery Started at Page (1:752).
+03:02:55  Physical Recovery Complete: 0 Pages Examined, 0 Pages Restored.
+03:02:55  Logical Recovery Started.
+03:02:55  10 recovery worker threads will be started.
+03:02:56  Logical Recovery has reached the transaction cleanup phase.
+03:02:56  Logical Recovery Complete.
+	  0 Committed, 0 Rolled Back, 0 Open, 0 Bad Locks
+
+03:02:57  Dataskip is now OFF for all dbspaces
+03:02:57  libaio.so.1: cannot open shared object file: No such file or directory
+03:02:57  Please install libaio package. See machine notes.
+03:02:57  Warning: Kernel Asynchronous I/O is disabled.
+03:03:04  GBase Database Server Started.
+03:03:04  Requested shared memory segment size rounded from 13476KB to 14064KB
+
+Sun Sep 20 03:03:05 2026
+
+03:03:05  Requested shared memory segment size rounded from 221001KB to 221004KB
+03:03:05  Successfully added a bufferpool of page size 2K.
+
+03:03:05  Requested shared memory segment size rounded from 324661KB to 324664KB
+03:03:05  Successfully added a bufferpool of page size 16K.
+
+03:03:05  Event alarms enabled.  ALARMPROG = '/opt/gbase/etc/alarmprogram.sh'
+03:03:05  Booting Language <c> from module <>
+03:03:05  Loading Module <CNULL>
+03:03:05  Booting Language <builtin> from module <>
+03:03:05  Loading Module <BUILTINNULL>
+03:03:10  libaio.so.1: cannot open shared object file: No such file or directory
+03:03:10  Please install libaio package. See machine notes.
+03:03:10  Warning: Kernel Asynchronous I/O is disabled.
+03:03:10  DR: DRAUTO is 0 (Off)
+03:03:10  DR: ENCRYPT_HDR is 0 (HDR encryption Disabled)
+03:03:10  Event notification facility epoll enabled.
+03:03:10  Warning: The surrogates file /etc/gbasedbt/allowed.surrogates is either inaccessible or does not exist (errno=
+2).  Mapping users to properties requires the file.
+03:03:10  Warning: Loading entries from the surrogates file /etc/gbasedbt/allowed.surrogates into surrogate cache
+ failed. Surrogate cache does not exist.
+03:03:10  CCFLAGS2 value set to 0x200
+03:03:10  SQL_FEAT_CTRL value set to 0x8008
+03:03:10  SQL_DEF_CTRL value set to 0x4b0
+03:03:10  GBase Database Server Version 12.10.FC4G1AEE Software Serial Number AAA#B000000
+03:03:11  GBase Database Server Initialized -- Shared Memory Initialized.
+
+03:03:11  Started 1 B-tree scanners.
+03:03:11  B-tree scanner threshold set at 5000.
+03:03:11  B-tree scanner range scan size set to -1.
+03:03:11  B-tree scanner ALICE mode set to 6.
+03:03:11  B-tree scanner index compression level set to med.
+03:03:11  Physical Recovery Started at Page (1:752).
+03:03:11  Physical Recovery Complete: 11 Pages Examined, 4 Pages Restored.
+03:03:11  Logical Recovery Started.
+03:03:11  10 recovery worker threads will be started.
+03:03:12  Logical Recovery has reached the transaction cleanup phase.
+03:03:12  Logical Recovery Complete.
+	  1 Committed, 0 Rolled Back, 0 Open, 0 Bad Locks
+
+03:03:13  Dataskip is now OFF for all dbspaces
+03:03:13  libaio.so.1: cannot open shared object file: No such file or directory
+03:03:13  Please install libaio package. See machine notes.
+03:03:13  Warning: Kernel Asynchronous I/O is disabled.
+03:03:16  GBase Database Server Started.
+03:03:16  Requested shared memory segment size rounded from 13476KB to 14064KB
+
+Sun Sep 20 03:03:17 2026
+
+03:03:17  Requested shared memory segment size rounded from 221001KB to 221004KB
+03:03:17  Successfully added a bufferpool of page size 2K.
+
+03:03:17  Requested shared memory segment size rounded from 324661KB to 324664KB
+03:03:18  Successfully added a bufferpool of page size 16K.
+
+03:03:18  Event alarms enabled.  ALARMPROG = '/opt/gbase/etc/alarmprogram.sh'
+03:03:18  Booting Language <c> from module <>
+03:03:18  Loading Module <CNULL>
+03:03:18  Booting Language <builtin> from module <>
+03:03:18  Loading Module <BUILTINNULL>

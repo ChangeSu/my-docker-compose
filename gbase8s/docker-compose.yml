@@ -1,0 +1,48 @@
+services:
+  gbase8s:
+    # GBase 8s 3.0.0 镜像（x86_64）
+    image: liaosnet/gbase8s:v8.8_3513x25_csdk_x64
+    container_name: gbase8s
+    hostname: gbase8s
+    restart: unless-stopped
+
+    # 特权模式，解决目录映射权限问题
+    privileged: true
+
+    # 共享内存，建议不低于 2GB
+    shm_size: 2g
+
+    # ========== 单机资源限制 ==========
+    # 内存上限 4GB
+    mem_limit: 4g
+    # 内存预留（可选，软限制）
+    # mem_reservation: 2g
+    # CPU 核数限制
+    cpus: 2.0
+
+    # 端口映射：主机端口:容器端口
+    ports:
+      - "9088:9088"   # GBase 8s 主服务端口
+      - "9089:9089"   # 管理端口（如需要）
+
+    # 环境变量（3.0.0 版本参数与后续版本一致）
+    environment:
+      - SERVERNAME=gbase01
+      - USERPASS=GBase123$%
+      - CPUS=2
+      - MEMS=3072
+      - ADTS=0
+
+    # 数据持久化卷
+    volumes:
+      - ./data/gbase8s/data:/opt/gbase/data
+      - ./data/gbase8s/log:/opt/gbase/log
+      - ./data/gbase8s/backup:/opt/gbase/backup
+
+    networks:
+      - app-network
+
+# 外部网络不变
+networks:
+  app-network:
+    external: true
